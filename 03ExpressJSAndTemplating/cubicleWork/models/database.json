@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Gan356 Air SM",
+    "description": "Gan356 Air SM Cube",
+    "imageUrl": "https://ae01.alicdn.com/kf/HTB1CSddXRxRMKJjy0Fdq6yifFXa6/Gan-356-Air-SM-3x3-Black-Magic-cube-GAN-Air-SM-Magnetic-3x3x3-Speed-cube-gans.jpg",
+    "difficultyLevel": "3"
+  },
+  {
+    "id": 2,
+    "name": "Eco-Dark",
+    "description": "Eco-Dark Cube",
+    "imageUrl": "https://thingsidesire.com/wp-content/uploads/2018/06/Eco-Dark-Rubik%E2%80%99s-Cube2.jpg",
+    "difficultyLevel": "3"
+  },
+  {
+    "id": 3,
+    "name": "Pyraminx",
+    "description": "Pyraminx Cube",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
+    "difficultyLevel": "1"
+  },
+  {
+    "id": 4,
+    "name": "Megaminx",
+    "description": "Megaminx Cube",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61HpQqVQ37L._SY355_.jpg",
+    "difficultyLevel": "3"
+  },
+  {
+    "name": "Miroslav Gechev",
+    "description": "name, description, imageUrl, difficultyLevelname, description, imageUrl, difficultyLevelname, description, imageUrl, difficultyLevel",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1651062928i/60522318.jpg",
+    "difficultyLevel": "1",
+    "id": 5
+  }
+]
