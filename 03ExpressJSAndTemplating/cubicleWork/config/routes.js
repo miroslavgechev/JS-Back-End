@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const cubes = require('./database.json');
 const pageController = require('../controllers/cubesController');
 
 
