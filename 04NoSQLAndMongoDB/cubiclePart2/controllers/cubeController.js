@@ -5,11 +5,17 @@ exports.getCreateCube = (req, res) => {
     console.log('Create Page rendered');
 }
 
-exports.postCreateCube = (req, res) => {
+exports.postCreateCube = async (req, res) => {
     const { name, description, imageUrl, difficultyLevel } = req.body;
 
-    let cube = new Cube({name, description, imageUrl, difficultyLevel});
-    cube.save();
+    try {
+        let cube = new Cube({ name, description, imageUrl, difficultyLevel });
+        await cube.save();
+    }
+    catch (err) {
+        console.log(err.message);
+        return res.redirect('/404');
+    }
 
     console.log('Create Page form processed');
     res.redirect('/');
