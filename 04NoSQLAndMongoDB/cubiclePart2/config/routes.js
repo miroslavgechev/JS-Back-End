@@ -1,18 +1,25 @@
-const router = require('express').Router()
-const pageController = require('../controllers/cubesController');
+const router = require('express').Router();
 
+const homeController = require('../controllers/homePageController');
+const cubeController = require('../controllers/cubeController');
+const accessoryController = require('../controllers/accessoryController');
 
 module.exports = (app) => {
     app.use(router);
 
-    app.get('/', pageController.getHomePage)
+    app.get('/', homeController.getHomePage)
+    app.get('/about', homeController.getAboutPage)
 
-    app.get('/about', pageController.getAboutPage)
+    app.get('/create/cube', cubeController.getCreateCube)
+    app.post('/create/cube', cubeController.postCreateCube)
 
-    app.get('/create', pageController.getCreatePage)
-    app.post('/create', pageController.postCreatePage)
+    app.get('/details/:cubeId', cubeController.getDetailsPage)
 
-    app.get('/details/:id', pageController.getDetailsPage)
+    app.get('/create/accessory', accessoryController.getCreateAccessory);
+    app.post('/create/accessory', accessoryController.postCreateAccessory);
 
-    app.get('*', pageController.getErrorPage)
+    app.get('/attach/accessory/:cubeId', accessoryController.getAttachAccessory);
+    app.post('/attach/accessory/:cubeId', accessoryController.postAttachAccessory);
+
+    app.get('*', cubeController.getErrorPage)
 };
