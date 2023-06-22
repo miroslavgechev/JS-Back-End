@@ -1,16 +1,29 @@
 const env = process.env.NODE_ENV || 'development';
 
 const config = require('./config/config')[env];
-const app = require('express')();
+
+//Setup express
+const express = require('express');
+const app = express();
 
 //Setup the view engine
-require('./config/viewEngineInit')(app);
+const viewEngine = require('./config/viewEngineInit')
+viewEngine(app);
+
+//Setup cookie parser
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+//Setup authentication middleware
+const authMiddleware = require('./middlewares/authMiddleware');
+app.use(authMiddleware.authentication);
 
 //Setup routes
-require('./config/routes')(app);
+const routes = require('./config/routes')
+routes(app);
 
-require('./config/databaseInit')()
+//Setup the database
+const database = require('./config/databaseInit')
+database()
     .then(() => app.listen(config.port, console.log(`Database is up and server is listening on port ${config.port}...`)))
     .catch(err => console.error(err.message));
-
-
