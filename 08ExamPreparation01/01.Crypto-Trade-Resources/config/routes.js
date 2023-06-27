@@ -25,22 +25,19 @@ module.exports = (app) => {
     app.get('/create', isAuthenticated, cryptoController.getCreate)
     app.post('/create', isAuthenticated, cryptoController.postCreate)
 
+    app.get('/catalog', cryptoController.getCatalog);
 
-    // app.get('/create/cube', isAuthenticated, cubeController.getCreateCube)
-    // app.post('/create/cube', isAuthenticated, cubeController.postCreateCube)
+    app.get('/details/:id', cryptoController.getDetails);
 
-    // app.get('/details/:cubeId', cubeController.getDetailsPage)
+    app.get('/buy/:id', isAuthenticated, cryptoController.getBuyCoin);
 
-    // app.get('/edit/:cubeId', isAuthenticated, cubeController.getEditCube);
-    // app.post('/edit/:cubeId', isAuthenticated, cubeController.postEditCube);
+    app.get('/edit/:id', isAuthenticated, cryptoController.getEdit);
+    app.post('/edit/:id', isAuthenticated, cryptoController.postEdit);
 
-    // app.get('/delete/:cubeId', isAuthenticated, cubeController.getDeleteCube);
-    // app.post('/delete/:cubeId', isAuthenticated, cubeController.postDeleteCube);
+    app.get('/delete/:id', isAuthenticated, cryptoController.getDelete);
 
-    // app.get('/attach/accessory/:cubeId', isAuthenticated, accessoryController.getAttachAccessory);
-    // app.post('/attach/accessory/:cubeId', isAuthenticated, accessoryController.postAttachAccessory);
+    app.get('/search', cryptoController.getSearch);
 
-
-    // app.get('*', cubeController.getErrorPage)
+    app.get('*', homeController.getErrorPage);
 
 };

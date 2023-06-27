@@ -5,12 +5,7 @@ const cryptoSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: [true, 'Crypto already added.'],
-        minLength: [2, 'Name must be at least 2 characters long.'],
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z0-9 ]+$/.test(v);
-            }, message: props => `${props.value} is not a valid name!`
-        }
+        minLength: [2, 'Name must be at least 2 characters long.']
     },
     image: {
         type: String,
@@ -32,12 +27,7 @@ const cryptoSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        minLength: 10,
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z0-9 ]+$/.test(v);
-            }, message: props => `${props.value} is not a valid description!`
-        }
+        minLength: 10
     },
 
     paymentMethod: {
