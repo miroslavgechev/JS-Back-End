@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const cryptoSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: [true, 'Name is required.'],
         unique: [true, 'Crypto already added.'],
         minLength: [2, 'Name must be at least 2 characters long.']
     },
     image: {
         type: String,
-        required: true,
+        required: [true, 'Image URL is required.'],
         validate: {
             validator: function (v) {
                 return v.startsWith('http://') || v.startsWith('https://');
@@ -20,7 +20,7 @@ const cryptoSchema = new mongoose.Schema({
 
     price: {
         type: Number,
-        required: true,
+        required: [true, 'Price is required.'],
         min: [0, 'Price must be a positive number.']
     },
 
@@ -33,13 +33,12 @@ const cryptoSchema = new mongoose.Schema({
     paymentMethod: {
         type: String,
         required: true,
-        validate: {
-            validator: function (v) {
-                return ['crypto-wallet', 'credit-card', 'debit-card', 'paypal'].includes(v.toLowerCase());
-            }, message: props => `${props.value} is not a valid payment method!`
+        enum: {
+            values: ['crypto-wallet', 'credit-card', 'debit-card', 'paypal'],
+            message: 'Payment method is invalid.'
         }
     },
-    
+
     buyer: [{
         type: mongoose.Types.ObjectId,
         ref: 'User'

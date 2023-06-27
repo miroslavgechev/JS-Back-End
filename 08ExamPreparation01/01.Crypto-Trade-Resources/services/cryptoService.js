@@ -2,13 +2,7 @@ const Crypto = require('../models/Crypto');
 
 exports.getOne = (id) => Crypto.findById(id).lean();
 
-exports.update = async (id, data) => {
-    try {
-        await Crypto.findByIdAndUpdate(id, data, { runValidators: true });
-    } catch (error) {
-        throw new Error(error);
-    }
-}
+exports.update = (id, data) => Crypto.findByIdAndUpdate(id, data, { runValidators: true });
 
 exports.deleteElement = async (id) => {
     try {

@@ -1,16 +1,12 @@
 exports.generateOptions = function (currentOption) {
     const optionsEnum = [
-        { key: 1, label: 'crypto-wallet', selected: false },
-        { key: 2, label: 'credit-card', selected: false },
-        { key: 3, label: 'debit-card', selected: false },
-        { key: 4, label: 'paypal', selected: false },
+        { key: 'crypto-wallet', label: 'Crypto Wallet', selected: false },
+        { key: 'credit-card', label: 'Credit Card', selected: false },
+        { key: 'debit-card', label: 'Debit Card', selected: false },
+        { key: 'paypal', label: 'PayPal', selected: false },
     ];
 
-    const result = optionsEnum.map(x => x.label === currentOption ? { ...x, selected: true } : x);
+    const result = optionsEnum.map(x => x.key === currentOption ? { ...x, selected: true } : x);
 
     return result;
-}
-
-exports.isOwner = (user, crypto) => {
-    return crypto.owner == user._id;
-}
+} 

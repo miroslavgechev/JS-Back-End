@@ -4,10 +4,8 @@ const { getErrorMessage } = require('../utils/getErrorMessage');
 const { generateOptions } = require('../utils/cryptoUtils');
 
 exports.getCreate = (req, res) => {
-
     res.render('create', {});
     console.log('Create Page rendered');
-
 }
 
 exports.postCreate = async (req, res) => {
@@ -35,14 +33,14 @@ exports.getCatalog = async (req, res) => {
 exports.getDetails = async (req, res) => {
 
     try {
-        const coin = await Crypto.findById(req.params.id).populate('owner').populate('buyer').lean();
+        const coin = await Crypto.findById(req.params.id).lean();
 
         const isAuthenticated = req.isAuthenticated;
         let isOwner = false;
         let hasBought = true;
 
         if (isAuthenticated) {
-            isOwner = coin.owner._id == req.user._id;
+            isOwner = coin.owner == req.user._id;
             hasBought = coin.buyer.some(x => x._id == req.user._id) ? true : false;
         }
 
@@ -59,7 +57,10 @@ exports.getBuyCoin = async (req, res) => {
     const userId = req.user._id;
 
     try {
-        await update(coinId, { buyer: userId })
+        await Crypto.findByIdAndUpdate(coinId, { $push: { buyer: userId } })
+        // const coin = await Crypto.findById(coinId).lean();
+        // coin.buyer.push(userId);  
+        // await coin.save();
 
     } catch (error) {
         return res.render('details', { error: getErrorMessage(error) });
@@ -80,8 +81,8 @@ exports.getEdit = async (req, res) => {
 
         res.render('edit', { coin, options });
         console.log('Edit Page rendered');
+        
     } catch (error) {
-
         res.redirect(`/details/${req.params.id}`, { error: getErrorMessage(error) });
     }
 }
@@ -137,9 +138,8 @@ exports.getSearch = async (req, res) => {
 
         res.render('search', { coins, searchTerm, options: generateOptions(paymentMethod) });
         console.log('Search Page rendered');
+        
     } catch (error) {
         res.render('search', { error: getErrorMessage(error) });
     }
-
-
 }
