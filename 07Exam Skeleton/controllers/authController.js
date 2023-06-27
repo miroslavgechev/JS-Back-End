@@ -8,7 +8,7 @@ exports.getRegister = (req, res) => {
 
 exports.postRegister = async (req, res) => {
     const { username, email, password, repeatPassword } = req.body;
-
+ 
     //Register user
     try {
         const token = await authService.register(username, email, password, repeatPassword);
@@ -20,8 +20,6 @@ exports.postRegister = async (req, res) => {
     } catch (error) {
         return res.render('register', { error: getErrorMessage(error) });
     }
-
-    res.redirect('/');
 }
 
 exports.getLogin = (req, res) => {
@@ -30,10 +28,10 @@ exports.getLogin = (req, res) => {
 }
 
 exports.postLogin = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const token = await authService.login(username, password);
+        const token = await authService.login(email, password);
         res.cookie('auth', token, { httpOnly: true });
         res.redirect('/');
 
@@ -42,7 +40,6 @@ exports.postLogin = async (req, res) => {
     } catch (error) {
         return res.render('login', { error: getErrorMessage(error) });
     }
-
 }
 
 exports.getLogout = (req, res) => {

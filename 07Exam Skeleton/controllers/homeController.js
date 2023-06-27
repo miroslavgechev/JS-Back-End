@@ -1,13 +1,12 @@
-const Cube = require('../snippets/CubeModel');
+// const Crypto = require('../models/Crypto');
 
-// exports.getHomePage = async (req, res) => {
+exports.getHomePage = async (req, res) => {
 
+    res.render('home', {});
+    console.log('Index Page rendered');
+}
 
-//     res.render('index', { cubes, search, difficultyFrom, difficultyTo });
-//     console.log('Index Page rendered');
-// }
-
-// exports.getAboutPage = (req, res) => {
-//     res.render('about');
-//     console.log('About Page rendered');
-// }
+exports.getErrorPage = (req, res) => {
+    res.render('404', {});
+    console.log('Error Page rendered');
+}

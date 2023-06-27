@@ -2,22 +2,23 @@
 
   <head>
     <meta charset="UTF-8" />
-    <title>About Page</title>
-    <link href="/css/site.css" type="text/css" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Web</title>
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
   <body>
-    <div class="container">
-      <header>
+    <header class="header">
+      <nav>
+        <img src="/images/logo.png" class="logo" />
         <ul>
-          <li><img class="logo" src="/images/logo.png" /></li>
-          <li><a href="/">Browse</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/catalog">All Crypto</a></li>
 
           {{#if isAuthenticated}}
-            <li><a href="/create/cube">Add a Cube</a></li>
-            <li><a href="/create/accessory">Add Accessory</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/create">Create Offer</a></li>
             <li><a href="/logout">Logout</a></li>
 
           {{else}}
@@ -26,18 +27,23 @@
 
           {{/if}}
         </ul>
-      </header>
+      </nav>
+    </header>
 
-      {{#if error}}
-      <div id="notifications">
-        <p id="notification-message">{{error}}</p>
+    {{#if error}}
+      <div>
+        <div class="errorContainer">
+          <p>{{error}}</p>
+        </div>
       </div>
-      {{/if}}
+    {{/if}}
 
-      {{{body}}}
+    {{{body}}}
 
-    </div>
-    <footer>@Cubicle: Exercise for Express.js and Handlebars</footer>
+    <footer>
+      <p>Back-End 2022</p>
+    </footer>
+
   </body>
 
 </html>

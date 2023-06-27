@@ -14,8 +14,8 @@ exports.register = async (username, email, password, repeatPassword) => {
             throw new Error('Passwords don\'t match!');
         }
     }
-    catch (err) {
-        throw err.message;
+    catch (error) {
+        throw error;
     }
 
     //Check if username is available
@@ -26,8 +26,8 @@ exports.register = async (username, email, password, repeatPassword) => {
             throw new Error('Username is already taken!');
         }
 
-    } catch (err) {
-        throw err.message;
+    } catch (error) {
+        throw error;
     }
 
     // Check if email is available
@@ -38,8 +38,8 @@ exports.register = async (username, email, password, repeatPassword) => {
             throw new Error('Email is already taken!');
         }
 
-    } catch (err) {
-        throw err.message;
+    } catch (error) {
+        throw error;
     }
 
     //Register user
@@ -53,15 +53,15 @@ exports.register = async (username, email, password, repeatPassword) => {
     }
 
     try {
-        return await this.login(username, password);
+        return this.login(email, password);
     } catch (error) {
         throw new Error(error);
     }
 
 }
 
-exports.login = async (username, password) => {
-    const user = await this.getUserByUsername(username);
+exports.login = async (email, password) => {
+    const user = await this.getUserByEmail(email);
 
     if (!user) {
         throw new Error('Wrong username or password');
