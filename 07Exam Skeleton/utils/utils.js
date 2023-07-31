@@ -40,3 +40,13 @@ exports.getSearch = async (req, res) => {
     }
 }
  */ 
+
+//Get specifi profile info snipper
+/**
+  exports.getProfile = async (req, res) => {
+    const profile = req.user;
+    const userId = req.user._id;
+    let wishList = await Book.find({ wishList: userId }).lean();
+    res.render('profile', { profile, wishList });
+}
+ */
