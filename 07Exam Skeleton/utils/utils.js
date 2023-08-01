@@ -15,6 +15,23 @@ exports.generateOptions = function (currentOption) {
 } 
 */
 
+//Get Enum snippet
+/**
+exports.getEnum = function (currentOption) {
+    const optionsEnum = [
+        { key: 'estate', label: 'Real Estate'},
+        { key: 'vehicles', label: 'Vehicles'},
+        { key: 'furniture', label: 'Furniture'},
+        { key: 'electronics', label: 'Electronics'},
+        { key: 'other', label: 'Other'}
+    ];
+    
+    const result = optionsEnum.find(x => x.key === currentOption)['label'];
+
+    return result;
+}
+ */
+
 //Search snippet  
 /**
 exports.getSearch = async (req, res) => {

@@ -34,3 +34,11 @@ exports.isAuthenticated = (req, res, next) => {
 
     next();
 }
+
+exports.isNotAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated) {
+        return res.redirect('/');
+    }
+
+    next();
+}

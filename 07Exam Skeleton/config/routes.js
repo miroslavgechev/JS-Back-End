@@ -3,10 +3,10 @@ const router = require('express').Router();
 //Add Controllers
 const homeController = require('../controllers/homeController');
 const authController = require('../controllers/authController');
-const cryptoController = require('../controllers/cryptoController');
+// const cryptoController = require('../controllers/cryptoController');
 
 //Add Middlewares
-const { isAuthenticated } = require('../middlewares/authMiddleware');
+const { isAuthenticated, isNotAuthenticated } = require('../middlewares/authMiddleware');
 
 module.exports = (app) => {
 
@@ -14,11 +14,11 @@ module.exports = (app) => {
 
     app.get('/', homeController.getHomePage)
 
-    app.get('/register', authController.getRegister);
-    app.post('/register', authController.postRegister);
+    app.get('/register', isNotAuthenticated, authController.getRegister);
+    app.post('/register', isNotAuthenticated, authController.postRegister);
 
-    app.get('/login', authController.getLogin);
-    app.post('/login', authController.postLogin);
+    app.get('/login', isNotAuthenticated, authController.getLogin);
+    app.post('/login', isNotAuthenticated, authController.postLogin);
 
     app.get('/logout', isAuthenticated, authController.getLogout);
 
@@ -38,6 +38,6 @@ module.exports = (app) => {
 
     // app.get('/search', cryptoController.getSearch);
 
-    app.get('*', homeController.getErrorPage);
+    // app.get('*', homeController.getErrorPage);
 
 };
