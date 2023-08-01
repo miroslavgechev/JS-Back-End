@@ -1,4 +1,6 @@
 
+//Use to show more than one error:
+
 function mapErrors(err) {
     if (Array.isArray(err)) {
         return err;
@@ -24,3 +26,4 @@ module.exports = mapErrors;
 */
 
 // return res.render('register', { error: getErrorMessage(error) });
+// res.render('edit', { errors: mapErrors(error) });
