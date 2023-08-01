@@ -17,18 +17,15 @@ exports.generateOptions = function (currentOption) {
 
 //Get Enum snippet
 /**
-exports.getEnum = function (currentOption) {
-    const optionsEnum = [
-        { key: 'estate', label: 'Real Estate'},
-        { key: 'vehicles', label: 'Vehicles'},
-        { key: 'furniture', label: 'Furniture'},
-        { key: 'electronics', label: 'Electronics'},
-        { key: 'other', label: 'Other'}
-    ];
-    
-    const result = optionsEnum.find(x => x.key === currentOption)['label'];
+const categories = {
+    estate: 'Real Estate',
+    vehicles: 'Vehicles',
+    furniture: 'Furniture',
+    electronics: 'Electronics',
+    other: 'Other'
+};
+// auction.category = categories[auction.category];
 
-    return result;
 }
  */
 
