@@ -4,7 +4,6 @@ const cryptoSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Name is required.'],
-        unique: [true, 'Crypto already added.'],
         minLength: [2, 'Name must be at least 2 characters long.']
     },
 
@@ -33,7 +32,7 @@ const cryptoSchema = new mongoose.Schema({
             validator: function (v) {
                 return v.startsWith('http://') || v.startsWith('https://');
             },
-            message: prop => `${prop} value is invalid URL!`
+            message: prop => `${prop.value} is invalid URL!`
         }
     },
 
