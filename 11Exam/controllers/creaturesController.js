@@ -142,3 +142,39 @@ exports.postEdit = async (req, res) => {
         }
     }
 }
+
+exports.getDelete = async (req, res) => {
+    const creatureId = req.params.id;
+
+    try {
+        const creature = await Creature.findById(creatureId).lean();
+        const isOwner = creature.owner._id == req.user._id;
+
+        if (!isOwner) {
+            throw new Error('You cannot delete this creature');
+        }
+
+        await Creature.findByIdAndDelete(creatureId);
+
+        res.redirect('/catalog');
+        console.log('Item Deleted');
+
+    } catch (error) {
+        res.render('404', { error: getErrorMessage(error) });
+    }
+}
+
+exports.getProfile = async (req, res) => {
+    const userId = req.user._id;
+    let author = ''
+
+    const userPosts = await Creature.find({ owner: userId }).populate('owner').lean();
+    if(userPosts.length){
+        author = `${userPosts[0].owner.firstName} ${userPosts[0].owner.lastName}`
+    }
+
+    userPosts.map(x => x.votes = x.votes.length);
+    userPosts.map(x => x.author = author)
+
+    res.render('profile', { userPosts });
+}

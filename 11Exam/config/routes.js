@@ -34,9 +34,9 @@ module.exports = (app) => {
     app.get('/edit/:id', isAuthenticated, creaturesController.getEdit);
     app.post('/edit/:id', isAuthenticated, creaturesController.postEdit);
 
-    // app.get('/delete/:id', isAuthenticated, cryptoController.getDelete);
+    app.get('/delete/:id', isAuthenticated, creaturesController.getDelete);
 
-    // app.get('/search', cryptoController.getSearch);
+    app.get('/profile', isAuthenticated, creaturesController.getProfile);
 
     app.get('*', homeController.getErrorPage);
 
