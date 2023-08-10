@@ -3,7 +3,7 @@ const router = require('express').Router();
 //Add Controllers
 const homeController = require('../controllers/homeController');
 const authController = require('../controllers/authController');
-// const cryptoController = require('../controllers/cryptoController');
+const creaturesController = require('../controllers/creaturesController');
 
 //Add Middlewares
 const { isAuthenticated, isNotAuthenticated } = require('../middlewares/authMiddleware');
@@ -22,8 +22,8 @@ module.exports = (app) => {
 
     app.get('/logout', isAuthenticated, authController.getLogout);
 
-    // app.get('/create', isAuthenticated, cryptoController.getCreate)
-    // app.post('/create', isAuthenticated, cryptoController.postCreate)
+    app.get('/create', isAuthenticated, creaturesController.getCreate)
+    app.post('/create', isAuthenticated, creaturesController.postCreate)
 
     // app.get('/catalog', cryptoController.getCatalog);
 

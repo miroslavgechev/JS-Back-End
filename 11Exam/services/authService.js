@@ -6,7 +6,7 @@ exports.getUserByUsername = async (username) => await User.findOne({ username })
 
 exports.getUserByEmail = async (email) => await User.findOne({ email });
 
-exports.register = async (username, email, password, repeatPassword) => {
+exports.register = async (email, firstName, lastName, password, repeatPassword) => {
 
     //Check if passwords match
     try {
@@ -15,18 +15,6 @@ exports.register = async (username, email, password, repeatPassword) => {
         }
     }
     catch (error) {
-        throw error;
-    }
-
-    //Check if username is available
-    try {
-        const existingUser = await this.getUserByUsername(username);
-
-        if (existingUser) {
-            throw new Error('Username is already taken!');
-        }
-
-    } catch (error) {
         throw error;
     }
 
@@ -44,7 +32,7 @@ exports.register = async (username, email, password, repeatPassword) => {
 
     //Register user
     try {
-        const user = new User({ username, email, password });
+        const user = new User({ email, firstName, lastName, password });
         await user.save();
         console.log('User registered');
 
@@ -73,8 +61,8 @@ exports.login = async (email, password) => {
         throw new Error('Wrong username or password');
     }
 
-    const payload = { _id: user._id, username: user.username, email: user.email };
-    const token = await jwt.sign(payload, config.development.SECRET, { expiresIn: '1h' });
+    const payload = { _id: user._id, email: user.email, firstName: user.firstName, lastName: user.lastName };
+    const token = await jwt.sign(payload, config.development.SECRET, { expiresIn: '4h' });
 
     return token;
 }

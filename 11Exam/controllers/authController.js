@@ -7,11 +7,11 @@ exports.getRegister = (req, res) => {
 }
 
 exports.postRegister = async (req, res) => {
-    const { username, email, password, repeatPassword } = req.body;
- 
+    const { email, firstName, lastName, password, repeatPassword } = req.body;
+
     //Register user
     try {
-        const token = await authService.register(username, email, password, repeatPassword);
+        const token = await authService.register(email, firstName, lastName, password, repeatPassword);
         res.cookie('auth', token, { httpOnly: true });
         res.redirect('/');
 

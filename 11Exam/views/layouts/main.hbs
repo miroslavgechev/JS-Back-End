@@ -1,49 +1,58 @@
+<!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crypto Web</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Wizard Creatures Wiki</title>
 
-  <body>
-    <header class="header">
-      <nav>
-        <img src="/images/logo.png" class="logo" />
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/catalog">All Crypto</a></li>
+  <!-- Do not forget to change the path to the css file -->
+  <link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
 
-          {{#if isAuthenticated}}
-            <li><a href="/search">Search</a></li>
-            <li><a href="/create">Create Offer</a></li>
-            <li><a href="/logout">Logout</a></li>
+<body>
+  <div id="box">
 
-          {{else}}
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-
-          {{/if}}
-        </ul>
-      </nav>
-    </header>
-
+    <!-- In case of error, you should display div with class "error-container" -->
+    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
     {{#if error}}
-      <div>
-        <div class="errorContainer">
-          <p>{{error}}</p>
-        </div>
-      </div>
+    <div class="error-container">
+      <p>{{error}}</p>
+    </div>
     {{/if}}
 
-    {{{body}}}
+
+    <nav>
+      <!-- Do not forget to change the path to the image -->
+      <img src="/img/logo.png" alt="logo">
+
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/catalog">All Posts</a></li>
+        <!-- Logged users -->
+
+        {{#if isAuthenticated}}
+        <li><a href="/create">Create Post</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/logout">Logout</a></li>
+
+        {{else}}
+        <!-- Guest users -->
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+
+
+    <main>
+      {{{body}}}
+    </main>
+
 
     <footer>
-      <p>Back-End 2022</p>
+      © JS Back-End Exam 2023
     </footer>
-
-  </body>
+  </div>
+</body>
 
 </html>
