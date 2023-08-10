@@ -25,19 +25,19 @@ module.exports = (app) => {
     app.get('/create', isAuthenticated, creaturesController.getCreate)
     app.post('/create', isAuthenticated, creaturesController.postCreate)
 
-    // app.get('/catalog', cryptoController.getCatalog);
+    app.get('/catalog', creaturesController.getCatalog);
 
-    // app.get('/details/:id', cryptoController.getDetails);
+    app.get('/details/:id', creaturesController.getDetails);
 
-    // app.get('/buy/:id', isAuthenticated, cryptoController.getBuyCoin);
+    app.get('/vote/:id', isAuthenticated, creaturesController.getVote);
 
-    // app.get('/edit/:id', isAuthenticated, cryptoController.getEdit);
-    // app.post('/edit/:id', isAuthenticated, cryptoController.postEdit);
+    app.get('/edit/:id', isAuthenticated, creaturesController.getEdit);
+    app.post('/edit/:id', isAuthenticated, creaturesController.postEdit);
 
     // app.get('/delete/:id', isAuthenticated, cryptoController.getDelete);
 
     // app.get('/search', cryptoController.getSearch);
 
-    // app.get('*', homeController.getErrorPage);
+    app.get('*', homeController.getErrorPage);
 
 };
