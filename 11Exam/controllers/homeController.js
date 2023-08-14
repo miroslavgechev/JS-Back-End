@@ -1,5 +1,3 @@
-// const Crypto = require('../models/Crypto');
-
 exports.getHomePage = async (req, res) => {
 
     res.render('home', {});
